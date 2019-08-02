@@ -1,0 +1,37 @@
+/* RGB */
+$old_navy: rgba(11, 27, 43, 1);
+$dark_blue: rgba(27, 45, 63, 1);
+$torqoise: rgba(53, 91, 107, 1);
+$teal: #1BD1A0;
+$teal-1: #6CE4C3;
+$teal-2: #42D9AF;
+$teal-3: #00C992;
+$teal-4: #00AA69;
+$white: rgba(255, 255, 255, 1);
+$light-gray: #DDDDDD;
+$dark-gray: #545454;
+$spacer: 10px;
+
+.gray_background{
+	background-color: $dark-gray;
+}
+
+.gray_color{
+	color: $dark-gray;
+}
+
+.teal_background{
+	background-color: $teal;
+}
+
+.teal_color{
+	color: $teal;
+}
+
+.light_gray_color{
+	color: $light-gray;
+}
+
+.white_color{
+	color: white;
+}

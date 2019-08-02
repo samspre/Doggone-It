@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<html>
+<head>
+	<title>HomePage</title>
+</head>
+<body>
+	<div class = "container-fluid d-flex flex-column align-items-center">
+		<div class ="p-b-50">
+		{% include 'includes/_navbar.html' %}
+		</div>
+		<div class = "row m-t-50">
+		<form id="role-form">
+           {% for field in form %}
+           {% if field != form.csrf_token %}
+            <div class ="input-group md-form form-sm form-2 pl-0 d-flex flex-row justify-content-center m-b-15">
+                <tr>
+                  <td>
+                  {{field.label}}:
+                  </td>
+                  <td> 
+                  {{ field }}
+                  </td>
+                </tr>
+            </div>
+            {% endif %}
+           {% endfor %}
+            <input type="submit" class="fadeIn fourth" value="Submit Picture">
+      </form>
+  		</div>
+	</div>
+</body>
+</html>
+{% endblock %}
