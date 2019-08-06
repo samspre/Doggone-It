@@ -425,6 +425,10 @@ input[type=email]:placeholder, input[type=text]:placeholder, input[type=password
   padding-bottom: 30px;
 }
 
+.input-dog-image {
+  width: 500px;
+}
+
 .background_image {
   width: 100%;
   max-width: 1500px !important;
