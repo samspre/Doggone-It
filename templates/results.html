@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class = "container-fluid d-flex flex-column align-items-center">
+    <div class ="p-b-100">
+    {% include 'includes/_navbar.html' %}
+    </div>
+    <div class = "results-page d-flex flex-column align-items-center">
+        <h1> Results Page </h1>
+        <img class = "icon" type = "image/ico" src = "{{url_for('static', filename='images/dog_not_found.large')}}">
+        <h1>Not implemented yet...</h1>
+    </div>
+    <div class = "row m-t-50">
+</div>
+{% endblock %}
