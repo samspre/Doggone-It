@@ -28,7 +28,6 @@ plt.show()
 
 ```
 This should print out a version of TensorFlow in the console window and pop up a window:       
-![alt text](https://github.com/samspre/Doggone-It/blob/master/tf-fashion/TestImage.png)
 
 ## Checkpoint 2: Run the TensorFlow Fashion Classification Example
 Go to https://www.tensorflow.org/tutorials/keras/basic_classification to read more about the code.       
