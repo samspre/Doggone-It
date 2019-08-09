@@ -20,7 +20,7 @@ fashion_mnist = keras.datasets.fashion_mnist
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 # The following shows there are 60,000 images in the training set, with each image represented as 28x28 pixels
-print(train_images.shape)
+print(train_images)
 # Likewise, there are 60,000 labels in the training set
 print( len(train_labels) )
 # Each label is an integer between 0 and 9

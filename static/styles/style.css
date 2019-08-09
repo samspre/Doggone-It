@@ -10394,4 +10394,26 @@ img.box-shadow {
   bottom: 0px;
 }
 
+.crop-height {
+  /* max-width: 1200px; /* img src width (if known) */
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.result-image {
+  /* corrects inline gap in enclosing div */
+  display: block;
+  max-width: 100%;
+  /* just in case, to force correct aspect ratio */
+  height: auto !important;
+  width: auto\	;
+  /* ie8+9 */
+  /* lt ie8 */
+  -ms-interpolation-mode: bicubic;
+}
+
+.progress-height {
+  height: 2rem !important;
+}
+
 /*# sourceMappingURL=style.css.map */

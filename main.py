@@ -1,7 +1,7 @@
 import os
 import sys
 import jinja2
-from flask import Flask, render_template, redirect, session, request, flash, url_for
+from flask import Flask, render_template, redirect, session, request, flash, url_for, jsonify
 import logging
 from forms.dogImage import DogImage 
 from werkzeug.utils import secure_filename
@@ -14,7 +14,6 @@ app = Flask(__name__, instance_path=dir_path)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 """
-
 function eval_image takes the user inputted image and reads it utilizing the PIL module
 image_path leads to the static/images/image_input folder in the flask app directory 
 Note: in order to print items in flask, you need to flush the buffer, or redirect the file via sys.stderr instead of stdout
@@ -27,7 +26,10 @@ def eval_image(image_path):
 
 @app.route('/results', methods = ["GET"]) #results page endpoint
 def results():
-    return render_template('results.html')
+    image_path = request.args['image_path']
+    results = session['results']
+    print(results, file=sys.stderr)
+    return render_template('results.html', image_path=image_path, results=results)
 
 @app.route('/', methods = ["GET", "POST"]) #initial homepage
 def home():
@@ -38,7 +40,12 @@ def home():
         image_path = os.path.join(app.instance_path, app.config['UPLOAD_FOLDER'], filename)
         image.save(image_path) #saves image to specified image path
         eval_image(image)
-        return redirect(url_for('results')) #redirects the user to a "results" page (currently nothings in it)
+        image_path_flask = "images/image_input/" + image.filename
+        ##hardcoded results
+        result = [{'Deer': 90}, {'Bear': 5}, {'Tiger': 1}, {"Lion": 1}]
+        session['results'] = result
+        print(result, file=sys.stderr)
+        return redirect(url_for('results', image_path=image_path_flask)) #redirects the user to a "results" page (currently nothings in it)
     return render_template("home.html", form=form)
 
 if __name__ == '__main__':
