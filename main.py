@@ -23,16 +23,10 @@ def eval_image(image_path):
     im = Image.open(image_path)
     #im.show()
     print("not implemented yet")
+    return [{'Deer': 90}, {'Bear': 5}, {'Tiger': 1}, {"Lion": 1}]
 
 @app.route('/results', methods = ["GET"]) #results page endpoint
 def results():
-    image_path = request.args['image_path']
-    results = session['results']
-    print(results, file=sys.stderr)
-    return render_template('results.html', image_path=image_path, results=results)
-
-@app.route('/', methods = ["GET", "POST"]) #initial homepage
-def home():
     form = DogImage()
     if  request.method == "POST" and form.validate_on_submit(): #reads from the frontend the form image
         image = form.image.data
@@ -43,6 +37,25 @@ def home():
         image_path_flask = "images/image_input/" + image.filename
         ##hardcoded results
         result = [{'Deer': 90}, {'Bear': 5}, {'Tiger': 1}, {"Lion": 1}]
+        session['results'] = result
+        print(result, file=sys.stderr)
+        return redirect(url_for('results', image_path=image_path_flask)) #redirects the user to a "results" page (currently nothings in it)
+    image_path = request.args['image_path']
+    results = session['results']
+    print(results, file=sys.stderr)
+    return render_template('results.html', image_path=image_path, results=results, form=form)
+
+@app.route('/', methods = ["GET", "POST"]) #initial homepage
+def home():
+    form = DogImage()
+    if  request.method == "POST" and form.validate_on_submit(): #reads from the frontend the form image
+        image = form.image.data
+        filename = secure_filename(image.filename)
+        image_path = os.path.join(app.instance_path, app.config['UPLOAD_FOLDER'], filename)
+        image.save(image_path) #saves image to specified image path
+        result = eval_image(image)
+        image_path_flask = "images/image_input/" + image.filename
+        ##hardcoded results
         session['results'] = result
         print(result, file=sys.stderr)
         return redirect(url_for('results', image_path=image_path_flask)) #redirects the user to a "results" page (currently nothings in it)
