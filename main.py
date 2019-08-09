@@ -6,6 +6,7 @@ import logging
 from forms.dogImage import DogImage 
 from werkzeug.utils import secure_filename
 from PIL import Image
+import time
 
 UPLOAD_FOLDER = 'static/images/image_input'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -22,21 +23,22 @@ Note: in order to print items in flask, you need to flush the buffer, or redirec
 def eval_image(image_path):
     im = Image.open(image_path)
     #im.show()
+    time.sleep(5)
     print("not implemented yet")
+    
     return [{'Deer': 90}, {'Bear': 5}, {'Tiger': 1}, {"Lion": 1}]
 
-@app.route('/results', methods = ["GET"]) #results page endpoint
+@app.route('/results', methods = ["GET", "POST"]) #results page endpoint
 def results():
     form = DogImage()
-    if  request.method == "POST" and form.validate_on_submit(): #reads from the frontend the form image
+    if  request.method == "POST": #reads from the frontend the form image
         image = form.image.data
         filename = secure_filename(image.filename)
         image_path = os.path.join(app.instance_path, app.config['UPLOAD_FOLDER'], filename)
         image.save(image_path) #saves image to specified image path
-        eval_image(image)
+        result = eval_image(image)
         image_path_flask = "images/image_input/" + image.filename
         ##hardcoded results
-        result = [{'Deer': 90}, {'Bear': 5}, {'Tiger': 1}, {"Lion": 1}]
         session['results'] = result
         print(result, file=sys.stderr)
         return redirect(url_for('results', image_path=image_path_flask)) #redirects the user to a "results" page (currently nothings in it)
