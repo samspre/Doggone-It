@@ -449,6 +449,10 @@ input[type=email]:placeholder, input[type=text]:placeholder, input[type=password
   padding-bottom: 30px;
 }
 
+#content {
+  min-height: 100vh;
+}
+
 .input-dog-image {
   width: 500px;
 }
@@ -10475,6 +10479,18 @@ img.box-shadow {
 
 .results {
   background-color: #DDDDDD;
+}
+
+.bd-example-modal-lg .modal-dialog {
+  display: table;
+  position: relative;
+  margin: 0 auto;
+  top: calc(50% - 24px);
+}
+
+.bd-example-modal-lg .modal-dialog .modal-content {
+  background-color: transparent;
+  border: none;
 }
 
 /*# sourceMappingURL=style.css.map */
