@@ -71,7 +71,7 @@ These instructions utilize Bash on Ubuntu for Windows with Git functionality ins
   * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
   * Restarting with stat
   * Debugger is active!
-  * Debugger PIN: 241-803-812
+  * Debugger PIN: XXX-XXX-XXX
   ```
 
   App is now running on the given URL (may be different)
