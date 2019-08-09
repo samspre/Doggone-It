@@ -7,8 +7,22 @@
     </div>
     <div class = "results-page d-flex flex-column align-items-center">
         <h1> Results Page </h1>
-        <img class = "icon" type = "image/ico" src = "{{url_for('static', filename='images/dog_not_found.large')}}">
-        <h1>Not implemented yet...</h1>
+        <div class = "row">
+            <div class = "col-lg-4 col-md-6">
+            <img class = "icon result-image crop-height" type = "image/ico" src = "{{url_for('static', filename=image_path )}}">
+            </div>
+            <div class = "col-lg-8 col-md-6 d-flex flex-column justify-content-center">
+                {% for dict_item in results %}
+                {% for key, value in dict_item.items() %}
+                    <div class = "p-b-10">
+                    <div class="progress progress-height">
+                        <div class="progress-bar" role="progressbar" style="width: {{value}}%;" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="100">{{key}}: {{value}}%</div>
+                    </div>
+                    </div>
+                {% endfor %}
+                {% endfor %}
+            </div>             
+        </div>
     </div>
     <div class = "row m-t-50">
 </div>
