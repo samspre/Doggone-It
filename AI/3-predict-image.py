@@ -1,7 +1,8 @@
 import cv2
 import tensorflow as tf
+import numpy as np
 
-CATEGORIES = [ "pug", "husky" ]
+CATEGORIES = [ "pug", "husky", "retriever" ]
 
 def prepare(filepath):
     IMG_SIZE = 90
@@ -19,10 +20,17 @@ Predict that image using this model.
 Return the prediction result to the user in our GUI.
 '''
 prediction = model.predict([prepare('pug_test.png')])
-print( CATEGORIES[int(prediction[0][0])] )
+print( "Percentages:", prediction[0] )
+print( CATEGORIES[np.argmax(prediction)] )
 
 prediction = model.predict([prepare('husky_test.png')])
-print( CATEGORIES[int(prediction[0][0])] )
+print( "Percentages:", prediction[0] )
+print( CATEGORIES[np.argmax(prediction)] )
 
 prediction = model.predict([prepare('pug_test2.png')])
-print( CATEGORIES[int(prediction[0][0])] )
+print( "Percentages:", prediction[0] )
+print( CATEGORIES[np.argmax(prediction)] )
+
+prediction = model.predict([prepare('retriever_test.png')])
+print( "Percentages:", prediction[0] )
+print( CATEGORIES[np.argmax(prediction)] )
