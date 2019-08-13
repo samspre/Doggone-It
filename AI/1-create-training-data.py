@@ -5,7 +5,7 @@ import cv2 # pip install openvc-python
 
 currentDirectory = os.getcwd()
 DATADIR = currentDirectory + "/dog_photos"
-CATEGORIES = [ "pug", "husky" ]
+CATEGORIES = [ "pug", "husky", "retriever" ]
 IMG_SIZE = 90 # Higher -> better quality image
 
 def create_training_data():
@@ -37,16 +37,20 @@ def create_training_data():
 training_data =[]
 pug_counter = 0
 husky_counter = 0
+retriever_counter = 0
 create_training_data()
 print( "Training data length:", len(training_data) )
 
 for features, label in training_data:
     if label == 0:
         pug_counter += 1
-    else:
+    elif label == 1:
         husky_counter += 1
+    else:
+        retriever_counter += 1
 print( "pug counter:", pug_counter )
 print( "husky counter:", husky_counter )
+print( "retriever counter:", retriever_counter )
 '''
 It's really important that the training data is balanced.
 This is an issue that can be fixed by scraping more images from online.
