@@ -7,6 +7,7 @@ from forms.dogImage import DogImage
 from werkzeug.utils import secure_filename
 from PIL import Image
 import time
+from AI.predict_image import predict_image 
 
 UPLOAD_FOLDER = 'static/images/image_input'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -20,13 +21,7 @@ image_path leads to the static/images/image_input folder in the flask app direct
 Note: in order to print items in flask, you need to flush the buffer, or redirect the file via sys.stderr instead of stdout
     usage: print(<message>, file=sys.stderr)
 """
-def eval_image(image_path):
-    im = Image.open(image_path)
-    #im.show()
-    time.sleep(5)
-    print("not implemented yet")
-    
-    return [{'Deer': 90}, {'Bear': 5}, {'Tiger': 1}, {"Lion": 1}]
+
 
 @app.route('/results', methods = ["GET", "POST"]) #results page endpoint
 def results():
@@ -36,10 +31,11 @@ def results():
         filename = secure_filename(image.filename)
         image_path = os.path.join(app.instance_path, app.config['UPLOAD_FOLDER'], filename)
         image.save(image_path) #saves image to specified image path
-        result = eval_image(image)
+        result = predict_image(image_path)
+        print(result, file=sys.stderr)
         image_path_flask = "images/image_input/" + image.filename
         ##hardcoded results
-        session['results'] = result
+        session['results'] = [result]
         print(result, file=sys.stderr)
         return redirect(url_for('results', image_path=image_path_flask)) #redirects the user to a "results" page (currently nothings in it)
     image_path = request.args['image_path']
@@ -55,10 +51,10 @@ def home():
         filename = secure_filename(image.filename)
         image_path = os.path.join(app.instance_path, app.config['UPLOAD_FOLDER'], filename)
         image.save(image_path) #saves image to specified image path
-        result = eval_image(image)
+        result = predict_image(image_path)
         image_path_flask = "images/image_input/" + image.filename
         ##hardcoded results
-        session['results'] = result
+        session['results'] = [result]
         print(result, file=sys.stderr)
         return redirect(url_for('results', image_path=image_path_flask)) #redirects the user to a "results" page (currently nothings in it)
     return render_template("home.html", form=form)
