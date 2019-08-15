@@ -10,13 +10,13 @@ PATH_NAMES = list()
 DOG_COUNTER = dict()
 IMG_SIZE = 90 # Higher -> better quality image
 
-def get_categories():
-    directory = os.fsencode(DATADIR)
+def get_categories( categories, datadir ):
+    directory = os.fsencode(datadir)
     for folder in os.listdir(directory):
         foldername = os.fsdecode(folder)
         d_index = foldername.find("-")
         dog_breed = foldername[d_index + 1:].lower().replace("_", " ")
-        CATEGORIES.append(dog_breed)
+        categories.append(dog_breed)
         PATH_NAMES.append(foldername)
         DOG_COUNTER[dog_breed] = 0
 
@@ -47,17 +47,16 @@ def create_training_data():
             except Exception as e: # Some images could be broken, just skip over these
                 pass
 
-
-get_categories()
+get_categories( CATEGORIES, DATADIR )
 print(CATEGORIES)
 training_data =[]
 create_training_data()
 print( "Training data length:", len(training_data) )
 
-for features, label in training_data:
-    DOG_COUNTER[CATEGORIES[label]] += 1
+#for features, label in training_data:
+#    DOG_COUNTER[CATEGORIES[label]] += 1
 
-print(DOG_COUNTER)
+#print(DOG_COUNTER)
 '''
 It's really important that the training data is balanced.
 This is an issue that can be fixed by scraping more images from online.

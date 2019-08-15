@@ -1,8 +1,20 @@
 import cv2
 import tensorflow as tf
 import numpy as np
+import os
+from create_training_data import get_categories
 
-CATEGORIES = [ "pug", "husky", "retriever" ]
+currentDirectory = os.getcwd()
+TESTDIR = currentDirectory
+DATADIR = currentDirectory + "/dog_images"
+CATEGORIES = list()
+PATH_NAMES = list()
+IMG_SIZE = 90
+
+get_categories( CATEGORIES, DATADIR )
+NUMCLASSES = len(CATEGORIES)
+print( "CATEGORIES:", CATEGORIES )
+print( "NUMCLASSES:", NUMCLASSES )
 
 def prepare(filepath):
     IMG_SIZE = 90
@@ -28,9 +40,5 @@ print( "Percentages:", prediction[0] )
 print( CATEGORIES[np.argmax(prediction)] )
 
 prediction = model.predict([prepare('pug_test2.png')])
-print( "Percentages:", prediction[0] )
-print( CATEGORIES[np.argmax(prediction)] )
-
-prediction = model.predict([prepare('retriever_test.png')])
 print( "Percentages:", prediction[0] )
 print( CATEGORIES[np.argmax(prediction)] )

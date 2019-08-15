@@ -16,12 +16,15 @@ from create_training_data import get_categories
 
 currentDirectory = os.getcwd()
 TESTDIR = currentDirectory
+DATADIR = currentDirectory + "/dog_images"
 CATEGORIES = list()
 PATH_NAMES = list()
 IMG_SIZE = 90
 
-get_categories()
+get_categories( CATEGORIES, DATADIR )
 NUMCLASSES = len(CATEGORIES)
+print( "CATEGORIES:", CATEGORIES )
+print( "NUMCLASSES:", NUMCLASSES )
 
 train_images = pickle.load( open("train_images.pickle","rb") ) # Get the formatted images from file
 train_labels = pickle.load( open("train_labels.pickle", "rb" ) ) # Get the corresponding classifications from file
@@ -49,7 +52,7 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 ### TRAINING THE MODEL #########################################################
-model.fit(train_images, train_labels, epochs=10)
+model.fit(train_images, train_labels, epochs=5)
 # batch size = how many images to train each time through
 # epochs = how many trainings to run
 # validation_split = ???
