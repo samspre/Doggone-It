@@ -14,7 +14,8 @@ def get_categories():
     directory = os.fsencode(DATADIR)
     for folder in os.listdir(directory):
         foldername = os.fsdecode(folder)
-        dog_breed = foldername.lower().replace("_", " ")
+        d_index = foldername.find("-")
+        dog_breed = foldername[d_index + 1:].lower().replace("_", " ")
         CATEGORIES.append(dog_breed)
         PATH_NAMES.append(foldername)
         DOG_COUNTER[dog_breed] = 0

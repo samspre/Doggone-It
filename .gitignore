@@ -2,3 +2,6 @@ venv/
 dogproject/
 *.pickle
 dog_images/
+__pycache__/
+dogenv/
+dog_images/
