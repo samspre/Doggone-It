@@ -42,7 +42,7 @@ model.add( Flatten() )
 model.add( Dense(64) )
 
 # Output layer
-model.add( Dense(3) ) # <-- Change this to the # of dog breeds we are testing
+model.add( Dense(NUMCLASSES) ) # <-- Change this to the # of dog breeds we are testing
 model.add( Activation('softmax') )
 
 model.compile(optimizer='adam',

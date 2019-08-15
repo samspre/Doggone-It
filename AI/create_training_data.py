@@ -18,7 +18,7 @@ def get_categories():
         CATEGORIES.append(dog_breed)
         PATH_NAMES.append(foldername)
         DOG_COUNTER[dog_breed] = 0
-    
+
 def create_training_data():
 
     for i in range(len(CATEGORIES)): # iterate through each breed we have pictures for
@@ -31,7 +31,7 @@ def create_training_data():
                 img_array = cv2.imread(os.path.join(path,img), cv2.IMREAD_GREYSCALE ) to convert it to greyscale
                 If color is not that essential, use this line instead^^^
                 '''
-            
+
                 #How to display current image:
                 # plt.imshow(img_array)
                 # plt.show()
@@ -50,9 +50,6 @@ def create_training_data():
 get_categories()
 print(CATEGORIES)
 training_data =[]
-pug_counter = 0
-husky_counter = 0
-retriever_counter = 0
 create_training_data()
 print( "Training data length:", len(training_data) )
 
