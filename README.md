@@ -1,7 +1,20 @@
 # Doggone It
-Detecting Dog Breeds through Computer Vision
+<!-- [![GitHub license](https://img.shields.io/github/license/volkb/Web-Systems-Development-Group-6.svg)](https://github.com/volkb/Web-Systems-Development-Group-6/blob/master/LICENSE.txt) -->
+[![GitHub contributors](https://img.shields.io/github/contributors/samspre/Doggone-It.svg)](https://github.com/samspre/Doggone-It/graphs/contributors)
+[![GitHub last commit](https://img.shields.io/github/last-commit/samspre/Doggone-It.svg)](https://github.com/volkb/Web-Systems-Development-Group-6/commits/master)
 
-## Members
+## Detecting Dog Breeds through Computer Vision
+
+We first train the program to detect dog breeds and assign the correct label to them.  Our training images are from the Stanford Dog Dataset; by using Tensorflow and Keras we are able to covert them to 90x90 and create RGB shape arrays for each image.  By passing these shape arrays through 4 layers and flattening the result into a 1d array, we can compile and train the model to detect specific breeds.
+
+By using a location feature, we can search for lost dogs within 500 miles of the user by utilizing online databases
+
+### Contents
+  * Members
+  * Running the App
+  * Using the App
+
+### Members
 * Virginia Barnes
 * Patrick Gilbert
 * Kristofer Kwan
@@ -9,7 +22,7 @@ Detecting Dog Breeds through Computer Vision
 * Jinli Park
 * Samantha Sprecace
 
-## Using the App
+### Running the App
 
 These instructions utilize Bash on Ubuntu for Windows with Git functionality installed
 
@@ -79,3 +92,17 @@ These instructions utilize Bash on Ubuntu for Windows with Git functionality ins
   > deactivate
 
   into the terminal
+
+### Using the App
+
+#### Identification
+
+Import your photos and go!
+
+![input](images/inputdogs.PNG)
+![results](images/results.PNG)
+
+
+#### Lost and Found
+
+![input](images/lostdogs.PNG)
