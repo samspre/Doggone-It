@@ -4,13 +4,14 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/samspre/Doggone-It.svg)](https://github.com/volkb/Web-Systems-Development-Group-6/commits/master)
 
 ## Detecting Dog Breeds through Computer Vision
-To format the training images, run create_training-data.py. This pulls images from a directory that contains fodlers labeled with the respective dog breed name. Inside these folders are images of the repective dog breed. Our model is currently trained on the Standford Dog Dataset. Using Tensorflow and Keras, this program resizes the images to be 90x90 and creates an RGB shape array. The image arrays and their corresponding labels are saved to a file using pickle.
+To format the training images, run create_training-data.py*. This pulls images from a directory that contains fodlers labeled with the respective dog breed name. Inside these folders are images of the repective dog breed. Our model is currently trained on the Standford Dog Dataset. Using Tensorflow and Keras, this program resizes the images to be 90x90 and creates an RGB shape array. The image arrays and their corresponding labels are saved to a file using pickle.
 
-To create and train the model, run create_and_train_model.py. The model uses the image arrays and labels to train. The images are passed through 4 Dense layers, flattened, and then passed through an output layer. The model is saved to a file using keras' .save() function.
+To create and train the model, run create_and_train_model.py*. The model uses the image arrays and labels to train. The images are passed through 4 Dense layers, flattened, and then passed through an output layer. The model is saved to a file using keras' .save() function.
 
-To use the trained model, run 3-predict.py. This program follows the keras test/prediction techniques. Our GUI makes it easy for users with no coding experience to test our model. 
+To use the trained model, run 3-predict.py*. This program follows the keras test/prediction techniques. Our GUI makes it easy for users with no coding experience to test our model. 
 By using a location feature, we can also search for lost dogs within 500 miles of the user by utilizing online databases.
 
+* Found in the AI Folder
 ### Contents
   * Members
   * Running the App
