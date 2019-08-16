@@ -8,27 +8,36 @@ To format the training images, run create_training-data.py. This pulls images fr
 
 To create and train the model, run create_and_train_model.py. The model uses the image arrays and labels to train. The images are passed through 4 Dense layers, flattened, and then passed through an output layer. The model is saved to a file using keras' .save() function.
 
-To use the trained model, run 3-predict.py. This program follows the keras test/prediction techniques. Our GUI makes it easy for users with no coding experience to test our model. 
+To use the trained model, run 3-predict.py. This program follows the keras test/prediction techniques. Our GUI makes it easy for users with no coding experience to test our model.
 By using a location feature, we can also search for lost dogs within 500 miles of the user by utilizing online databases.
 
-### Contents
-  * Members
-  * Running the App
-  * Using the App
+
+### Table of Contents
+
+1. [Members](#mem)
+2. [Getting Started](#start)
+3. [Setup](#setup)
+4. [Using the App](#use)
+
+<a name="mem"/>
 
 ### Members
-* Virginia Barnes
-* Patrick Gilbert
-* Kristofer Kwan
-* Eric Miu
-* Jinli Park
-* Samantha Sprecace
+  * Virginia Barnes
+  * Patrick Gilbert
+  * Kristofer Kwan
+  * Eric Miu
+  * Jinli Park
+  * Samantha Sprecace
 
-### Running the App
+<a name="start"/>
+
+### Getting Started
 
 These instructions utilize Bash on Ubuntu for Windows with Git functionality installed
 
-**1. Install Python 3.6**
+#### Installation
+
+##### Install Python 3.6
 
   Check to see if Python 3.6 is already on your system by typing the following into your preferred shell
 
@@ -48,7 +57,19 @@ These instructions utilize Bash on Ubuntu for Windows with Git functionality ins
 
   > sudo apt-get upgrade
 
-**2. Clone the Project**
+##### Install Tensorflow and Keras
+
+  Using pip3 from Python3.6
+
+  > pip3 install tensorflow --user
+
+  > pip3 install keras --user
+
+<a name="setup"/>
+
+#### Setup
+
+##### **1. Clone the Project**
 
   Perform the following commands to access the repository
 
@@ -58,7 +79,7 @@ These instructions utilize Bash on Ubuntu for Windows with Git functionality ins
   user@computer:~/Doggone-It$ git pull
   ```
 
-**3. Set up the virtual environment**
+##### **2. Set up the virtual environment**
 
   ``` bash
   # Windows
@@ -73,8 +94,7 @@ These instructions utilize Bash on Ubuntu for Windows with Git functionality ins
   (venv) user@computer:~/Doggone-It$ pip3.6 install -r requirements.txt --user
   ```
 
-**4. Run the program**
-
+##### **3. Run the program**
 
   ``` bash
   (venv) user@computer:~/Doggone-It$ python3.6 main.py
@@ -90,10 +110,12 @@ These instructions utilize Bash on Ubuntu for Windows with Git functionality ins
   ```
 
   App is now running on the given URL (may be different)
-  To quit, use type
+  To quit, type
   > deactivate
 
   into the terminal
+
+<a name="use"/>
 
 ### Using the App
 
@@ -103,7 +125,6 @@ Import your photos and go!
 
 ![input](images/inputdogs.PNG)
 ![results](images/results.PNG)
-
 
 #### Lost and Found
 
