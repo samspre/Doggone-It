@@ -10467,7 +10467,7 @@ img.box-shadow {
   max-width: 100%;
   /* just in case, to force correct aspect ratio */
   height: auto !important;
-  width: auto\	;
+  width: auto\9 ;
   /* ie8+9 */
   /* lt ie8 */
   -ms-interpolation-mode: bicubic;
@@ -10491,6 +10491,31 @@ img.box-shadow {
 .bd-example-modal-lg .modal-dialog .modal-content {
   background-color: transparent;
   border: none;
+}
+
+.animal-image {
+  position: relative;
+  width: 50%;
+}
+
+.animal-image:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.crop {
+  display: block;
+  height: 300px;
+  max-height: 300px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background-color: black;
+}
+
+.crop img {
+  position: absolute;
 }
 
 /*# sourceMappingURL=style.css.map */

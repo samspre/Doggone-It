@@ -5,3 +5,5 @@ dog_images/
 __pycache__/
 dogenv/
 dog_images/
+geckodriver-v0.24.0-win64/
+geckodriver.log

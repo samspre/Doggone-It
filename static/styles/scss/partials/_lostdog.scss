@@ -1,0 +1,22 @@
+.animal-image {
+    position: relative;
+    width: 50%; 
+    }
+    .animal-image:before {
+    content: "";
+        display: block;
+        padding-top: 100%;  
+    }
+
+.crop {
+    display: block;
+    height: 300px;
+    max-height: 300px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background-color: black;
+}
+.crop img {
+    position: absolute;
+}
