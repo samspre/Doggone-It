@@ -24,13 +24,23 @@ def makeDict():
         continue
     return dogtonum
  
+def getBreedIndex(dogtonum, breed):
+    if breed in dogtonum:
+        return dogtonum[breed]
+    
+    breed_keywords = breed.split()
+    for keyword in breed_keywords:
+        for dog in dogtonum:
+            if keyword in dog:
+                return dogtonum[dog] 
+    return -1
 
 def findLostDog(breed, location):
     #https://www.petango.com/pet_search_results?speciesId=1&breedId=0&location=12180&distance=50
     URL = "https://www.petango.com/Lost-Pet-Search-Results"
     distance = 500
     dogtonum = makeDict()
-    breedId = dogtonum.get(breed)
+    breedId = getBreedIndex(dogtonum, breed)
     options = Options()
     options.add_argument('--headless')
     PARAMS = {'speciesId' : "1", 'breedId' : breedId, 'location' : location, 'distance' : str(distance)}
@@ -65,5 +75,5 @@ def findLostDog(breed, location):
     return animal_profiles
 
 
-results = findLostDog("Terrier", "12180")
+results = findLostDog("boston bull", "12180")
 print(results)

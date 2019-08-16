@@ -12,14 +12,25 @@ import numpy as np # pip install numpy
 import matplotlib.pyplot as plt # pip install matplotlib
 import os
 import cv2 # pip install openvc-python
-from create_training_data import get_categories
 
 currentDirectory = os.getcwd()
 TESTDIR = currentDirectory
 DATADIR = currentDirectory + "/dog_images"
 CATEGORIES = list()
 PATH_NAMES = list()
+DOG_COUNTER = dict()
 IMG_SIZE = 90
+
+def get_categories( categories, datadir ):
+    directory = os.fsencode(datadir)
+    PATH_NAMES = list()
+    for folder in os.listdir(directory):
+        foldername = os.fsdecode(folder)
+        d_index = foldername.find("-")
+        dog_breed = foldername[d_index + 1:].lower().replace("_", " ")
+        categories.append(dog_breed)
+        PATH_NAMES.append(foldername)
+        DOG_COUNTER[dog_breed] = 0
 
 get_categories( CATEGORIES, DATADIR )
 NUMCLASSES = len(CATEGORIES)
@@ -43,7 +54,7 @@ model.add( MaxPooling2D(pool_size=(2,2)) )
 
 model.add( Flatten() )
 model.add( Dense(64) )
-
+model.add( Activation("relu"))
 # Output layer
 model.add( Dense(NUMCLASSES) ) # <-- Change this to the # of dog breeds we are testing
 model.add( Activation('softmax') )
