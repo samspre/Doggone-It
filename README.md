@@ -1,5 +1,6 @@
 # Doggone It
 <!-- [![GitHub license](https://img.shields.io/github/license/volkb/Web-Systems-Development-Group-6.svg)](https://github.com/volkb/Web-Systems-Development-Group-6/blob/master/LICENSE.txt) -->
+
 [![GitHub contributors](https://img.shields.io/github/contributors/samspre/Doggone-It.svg)](https://github.com/samspre/Doggone-It/graphs/contributors)
 [![GitHub last commit](https://img.shields.io/github/last-commit/samspre/Doggone-It.svg)](https://github.com/volkb/Web-Systems-Development-Group-6/commits/master)
 
@@ -124,6 +125,7 @@ These instructions utilize Bash on Ubuntu for Windows with Git functionality ins
 Import your photos and go!
 
 ![input](images/inputdogs.PNG)
+
 ![results](images/results.PNG)
 
 #### Lost and Found
