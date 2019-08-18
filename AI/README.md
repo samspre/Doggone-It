@@ -4,6 +4,7 @@ Included in this directory is a folder ```dog_photos```. Feel free to upload any
 ## Step 2:*
 #### Run ```2-create-and-train-model.py``` to create and train the AI model.
 The creation of the model can be changed to increase accuracy and reliability. Feel free to mess around with it.
+At the current moment, our model was trained with the Stanford Dog Data Set. This set contains 120 different dog breeds and 150 pictures of each breed, for a total of 18,000 training photos. We trained our model with these 18,000 photos over 20 epochs. Training took about 2 minutes per epoch, and reached an estimated 96% accuracy. Of course, with cleaner images and more iamges per breed, we could increase the accuracy of the model. 
 ## Step 3:
 #### Run ```3-predict-image.py``` to test the AI model on ANY image.
 Included in this directory are three test photos. Use these as an example when testing your own images.     

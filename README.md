@@ -1,5 +1,6 @@
 # Doggone It
 <!-- [![GitHub license](https://img.shields.io/github/license/volkb/Web-Systems-Development-Group-6.svg)](https://github.com/volkb/Web-Systems-Development-Group-6/blob/master/LICENSE.txt) -->
+
 [![GitHub contributors](https://img.shields.io/github/contributors/samspre/Doggone-It.svg)](https://github.com/samspre/Doggone-It/graphs/contributors)
 [![GitHub last commit](https://img.shields.io/github/last-commit/samspre/Doggone-It.svg)](https://github.com/volkb/Web-Systems-Development-Group-6/commits/master)
 
@@ -10,6 +11,10 @@ To create and train the model, run create_and_train_model.py*. The model uses th
 
 To use the trained model, run 3-predict.py. This program follows the keras test/prediction techniques. Our GUI makes it easy for users with no coding experience to test our model.
 By using a location feature, we can also search for lost dogs within 500 miles of the user by utilizing online databases.
+
+At the current moment, our model was trained with the Stanford Dog Data Set. This set contains 120 different dog breeds and 150 pictures of each breed, for a total of 18,000 training photos. We trained our model with these 18,000 photos over 20 epochs. Training took about 2 minutes per epoch, and reached an estimated 96% accuracy. Of course, with cleaner images and more iamges per breed, we could increase the accuracy of the model. 
+
+Overall, our group has learned how difficult it is to make a reliable AI. One needs a lot of quality data and a well-structured model, as well as a lot of time to create and train the model. It certainly was more difficult than we imagined.
 
 
 ### Table of Contents
@@ -124,6 +129,7 @@ These instructions utilize Bash on Ubuntu for Windows with Git functionality ins
 Import your photos and go!
 
 ![input](images/inputdogs.PNG)
+
 ![results](images/results.PNG)
 
 #### Lost and Found
