@@ -6,7 +6,7 @@ def prepare(filepath):
     IMG_SIZE = 90
     img_array = cv2.imread(filepath)
     new_array = cv2.resize( img_array, (IMG_SIZE,IMG_SIZE) )
-    return new_array.reshape( -1, IMG_SIZE, IMG_SIZE, 3 )
+    return new_array.reshape( -1, IMG_SIZE, IMG_SIZE, 3 )/255
 
 def get_categories( categories, datadir ):
     directory = os.fsencode(datadir)
@@ -25,7 +25,8 @@ def predict_image(image_path):
     DATADIR = currentDirectory + "\\AI\\dog_images"
     get_categories(CATEGORIES, DATADIR)
     for i in range(len(CATEGORIES)):
-        results[CATEGORIES[i]] = 100 * int(prediction[0][i])
+        results[CATEGORIES[i]] = 100 * float(prediction[0][i])
+    #print(prediction[0], file=sys.stderr)
     top_three = sorted(results.items(), reverse=True, key=lambda kv: kv[1])
     print(top_three, file=sys.stderr)    
     return top_three

@@ -19,61 +19,63 @@ def makeDict():
         splitentry = entry.split('>')
         # Key is breed name, value is corresponding number
         dogtonum[splitentry[1]] = splitentry[0]
-    for key, value in dogtonum.items():
-        #print(value, key)
-        continue
     return dogtonum
  
 def getBreedIndex(dogtonum, breed):
-    if breed in dogtonum:
-        return dogtonum[breed]
+    matching_dogs = list()
+    if breed.title() in dogtonum:
+        return [dogtonum[breed]]
     
     breed_keywords = breed.split()
+    #print(breed_keywords)
     for keyword in breed_keywords:
-        for dog in dogtonum:
-            if keyword in dog:
-                return dogtonum[dog] 
-    return -1
+        if keyword != "dog":
+            for dog in dogtonum:
+                #print(dog)
+                if keyword.lower() in dog.lower():
+                    #print("found dog! {:s}".format(keyword))
+                    matching_dogs.append(dogtonum[dog]) 
+    return matching_dogs
 
 def findLostDog(breed, location):
     #https://www.petango.com/pet_search_results?speciesId=1&breedId=0&location=12180&distance=50
     URL = "https://www.petango.com/Lost-Pet-Search-Results"
     distance = 500
     dogtonum = makeDict()
-    breedId = getBreedIndex(dogtonum, breed)
+    breedList = getBreedIndex(dogtonum, breed)
     options = Options()
     options.add_argument('--headless')
-    PARAMS = {'speciesId' : "1", 'breedId' : breedId, 'location' : location, 'distance' : str(distance)}
-    response = requests.get(url = URL, params = PARAMS)
     browser = webdriver.Firefox(options=options)
-    fullURL = URL + '?speciesId=1&breedId=' + str(breedId) + '&location=' + str(location) + '&distance=' + str(distance) + '&gender=&size=&color=&mustHavePhoto=1&la=1'
-    browser.get(fullURL)
-    soup = BeautifulSoup(browser.page_source, "html.parser")
-    #print(soup)
     animal_profiles = list()
-    for tag in soup.findAll(class_='animal-template'):
-        #animal_profiles.append(tag)
-        profile = dict()
-        animal_image_tag = tag.find(attrs={"class": "animal-image"})
-        animal_image = animal_image_tag['style']
-        a_im_start = animal_image.find('url("') + 5
-        a_im_end = animal_image.find('")')
-        animal_image_url = animal_image[a_im_start:a_im_end]
-        animal_name = tag.find(attrs={"data-bind": "text: name"}).string
-        animal_dist = tag.find(attrs={"data-bind": "text: distance"}).string
-        animal_gender = tag.find(attrs={"data-bind": "text: gender"}).string
-        animal_breed = tag.find(attrs={"data-bind": "text: breed"}).string
-        animal_link = tag.find(attrs={"data-bind": "attr: { href: url}"})['href']
-        profile['image'] = animal_image_url
-        profile['name'] = animal_name
-        profile['distance'] = animal_dist
-        profile['gender'] = animal_gender
-        profile['breed'] = animal_breed
-        profile['link'] = str(animal_link)
-        animal_profiles.append(profile)
+    for i in range(len(breedList)):
+        breedId = breedList[i]
+        PARAMS = {'speciesId' : "1", 'breedId' : breedId, 'location' : location, 'distance' : str(distance)}
+        response = requests.get(url = URL, params = PARAMS)
+        fullURL = URL + '?speciesId=1&breedId=' + str(breedId) + '&location=' + str(location) + '&distance=' + str(distance) + '&gender=&size=&color=&mustHavePhoto=1&la=1'
+        browser.get(fullURL)
+        soup = BeautifulSoup(browser.page_source, "html.parser")
+        #print(soup)
+
+        for tag in soup.findAll(class_='animal-template'):
+            #animal_profiles.append(tag)
+            #print(tag)
+            profile = dict()
+            animal_image_tag = tag.find(attrs={"class": "animal-image"})
+            animal_image = animal_image_tag['style']
+            a_im_start = animal_image.find('url("') + 5
+            a_im_end = animal_image.find('")')
+            animal_image_url = animal_image[a_im_start:a_im_end]
+            animal_name = tag.find(attrs={"data-bind": "text: name"}).string
+            animal_dist = tag.find(attrs={"data-bind": "text: distance"}).string
+            animal_gender = tag.find(attrs={"data-bind": "text: gender"}).string
+            animal_breed = tag.find(attrs={"data-bind": "text: breed"}).string
+            animal_link = tag.find(attrs={"data-bind": "attr: { href: url}"})['href']
+            profile['image'] = animal_image_url
+            profile['name'] = animal_name
+            profile['distance'] = animal_dist
+            profile['gender'] = animal_gender
+            profile['breed'] = animal_breed
+            profile['link'] = str(animal_link)
+            animal_profiles.append(profile)
     browser.quit()
     return animal_profiles
-
-
-results = findLostDog("boston bull", "12180")
-print(results)
